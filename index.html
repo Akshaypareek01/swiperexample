@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Divs One by One</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        .first-section {
+            height: 100vh;
+            border: 1px solid red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+        }
+
+        .content {
+            position: relative;
+            height: 500vh; /* Adjust for longer scroll */
+            margin-top: 100px; /* Space for the fixed header */
+        }
+
+        .box {
+            position: fixed;
+            top: 50px;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 40px;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .box1 {
+            background-color: #ff6347; /* Random Color */
+        }
+
+        .box2 {
+            background-color: #4682b4;
+        }
+
+        .box3 {
+            background-color: #32cd32;
+        }
+
+        .box4 {
+            background-color: #ff4500;
+        }
+
+        .box5 {
+            background-color: #8a2be2;
+        }
+
+        .footer {
+            background-color: #444;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>Header Section</h1>
+    </header>
+
+    <!-- First Section -->
+    <section class="first-section">
+        <div>First Section Content</div>
+    </section>
+
+    <!-- Divs Section (Content) -->
+    <section class="content">
+        <div class="box box1">Div 1</div>
+        <div class="box box2">Div 2</div>
+        <div class="box box3">Div 3</div>
+        <div class="box box4">Div 4</div>
+        <div class="box box5">Div 5</div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h2>Footer Section</h2>
+    </footer>
+
+    <script>
+        document.addEventListener('scroll', () => {
+            const boxes = document.querySelectorAll('.box');
+            const footer = document.querySelector('.footer');
+            const scrollPos = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const firstSectionHeight = document.querySelector('.first-section').offsetHeight;
+            const totalHeight = boxes.length * windowHeight + firstSectionHeight;
+
+            boxes.forEach((box, index) => {
+                const boxOffset = index * windowHeight + firstSectionHeight;
+                if (scrollPos >= boxOffset && scrollPos < boxOffset + windowHeight) {
+                    box.style.opacity = '1';
+                    box.style.transform = 'translateY(0)';
+                } else {
+                    box.style.opacity = '0';
+                    box.style.transform = 'translateY(100px)';
+                }
+            });
+
+            // Show the footer after all divs have been scrolled through
+            if (scrollPos >= totalHeight - windowHeight) {
+                footer.style.display = 'block';
+                footer.style.position = 'relative';
+            } else {
+                footer.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>

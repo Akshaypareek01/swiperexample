@@ -1,0 +1,136 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swiper demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Demo styles -->
+  <style>
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper {
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 300px;
+      height: 300px;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+    }
+
+    .swiper-slide {
+    transition: transform 0.4s ease, z-index 0.4s ease; /* Smooth transition for all slides */
+  }
+
+  /* Style for the active slide */
+  .swiper-slide-active {
+    transform: scale(1.5) translateY(30px); /* Enlarged and moved slightly downward */
+    z-index: 10; /* Ensure the active slide appears above others */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Add a shadow for better focus */
+ /* Add a custom border to the active slide */
+    border-radius: 10px; /* Optional rounded corners */
+    background-color: #ffffff; /* Background for better emphasis */
+    width: 400px;
+  }
+
+  /* Style for adjacent slides (next and previous) */
+  .swiper-slide-next,
+  .swiper-slide-prev {
+    transform: scale(0.9); /* Slightly smaller */
+    z-index: 5; /* Ensure they're behind the active slide */
+    opacity: 1; /* Dimmed effect for adjacent slides */
+  }
+
+  /* Style for non-visible slides */
+  .swiper-slide {
+    opacity:1; /* Make non-active slides less visible */
+  }
+  </style>
+</head>
+
+<body>
+  <!-- Swiper -->
+  <div class="swiper mySwiper" style="border-width: 1px solid red; width: 1000px;">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+      </div>
+      <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+      </div>
+      <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+      </div>
+      <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+      </div>
+      <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+      </div>
+      <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+      </div>
+      <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+      </div>
+      <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+      </div>
+      <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true, // Center the active slide
+      slidesPerView: "auto", // Adjust slide width dynamically
+      loop: true, // Enable looping
+      coverflowEffect: {
+        rotate: 0, // No rotation
+        stretch: 0, // Adjust spacing
+        depth: 150, // Depth effect for inactive slides
+        modifier: 2, // Magnify the active slide
+        slideShadows: false, // Disable shadows for simplicity
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true, // Makes pagination bullets clickable
+      },
+    });
+  </script>
+</body>
+
+</html>
